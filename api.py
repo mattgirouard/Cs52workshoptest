@@ -85,7 +85,7 @@ class EventsForUser(Resource):
             # parser.add_argument('email', type=str, help='Email address to create user')
             # parser.add_argument('password', type=str, help='Password to create user')
             # args = parser.parse_args()
-            test_user = "mgirouard"
+            test_user = "Andrew"
 
             conn = mysql.connect()
             cursor = conn.cursor()
