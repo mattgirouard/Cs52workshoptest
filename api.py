@@ -2,9 +2,14 @@ from flask import Flask
 from flask_restful import Resource, Api
 from flask_restful import reqparse
 from flask.ext.mysql import MySQL
+from flask.ext.cors import CORS, cross_origin
 
 mysql = MySQL()
 app = Flask(__name__)
+
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'b1ba3ee4b6964c'
@@ -43,7 +48,7 @@ class CreateUser(Resource):
         except Exception as e:
             return {'error': str(e)}
 
-
+@cross_origin()
 class PutEvent(Resource):
     def get(self):
         try:
