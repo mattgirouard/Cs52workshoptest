@@ -7,8 +7,7 @@ from flask.ext.cors import CORS, cross_origin
 mysql = MySQL()
 app = Flask(__name__)
 
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app)
 
 
 # MySQL configurations
@@ -48,7 +47,7 @@ class CreateUser(Resource):
         except Exception as e:
             return {'error': str(e)}
 
-@cross_origin()
+
 class PutEvent(Resource):
     def get(self):
         try:
