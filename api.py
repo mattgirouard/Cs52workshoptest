@@ -84,7 +84,7 @@ class EventsForUser(Resource):
             conn = mysql.connect()
             cursor = conn.cursor()
 
-            cursor.execute("""SELECT * from users where username='%s'""", (test_user,))
+            cursor.execute("""SELECT * from users where username=%s""", (test_user,))
             data = cursor.fetchall()
 
             if data is None:
