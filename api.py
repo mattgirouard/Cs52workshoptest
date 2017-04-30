@@ -73,7 +73,7 @@ class PutEvent(Resource):
 
 
 api.add_resource(CreateUser, '/CreateUser')
-api.add_resource(CreateUser, '/PutEvent')
+api.add_resource(PutEvent, '/PutEvent')
 
 if __name__ == '__main__':
     app.run(debug=True)
