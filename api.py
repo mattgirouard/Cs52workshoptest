@@ -61,7 +61,7 @@ class PutEvent(Resource):
             name = args['name'].encode("utf-8")
             user = args['user'].encode("utf-8")
             description = args['description'].encode("utf-8")
-            date = args['date'].encode("utf-8")  
+            date = args['date'].encode("utf-8")
 
             conn = mysql.connect()
             cursor = conn.cursor()
@@ -108,7 +108,8 @@ class AllEvents(Resource):
             conn = mysql.connect()
             cursor = conn.cursor()
 
-            cursor.execute("""SELECT * FROM users""")
+            query = """SELECT * FROM users"""
+            cursor.execute(query, (str(id.decode('unicode_escape').encode('ascii', 'utf-8')), ))
             data = cursor.fetchall()
 
             return data
