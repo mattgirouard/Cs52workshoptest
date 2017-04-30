@@ -44,8 +44,36 @@ class CreateUser(Resource):
             return {'error': str(e)}
 
 
+class PutEvent(Resource):
+    def get(self):
+        try:
+            # Parse the arguments
+            # parser = reqparse.RequestParser()
+            # parser.add_argument('email', type=str, help='Email address to create user')
+            # parser.add_argument('password', type=str, help='Password to create user')
+            # args = parser.parse_args()
+            test_user = "mgirouard"
+            test_name = "Test Post"
+            test_date = "10/21/2017"
+            test_detail = "details"
+
+            conn = mysql.connect()
+            cursor = conn.cursor()
+
+            cursor.execute("""insert into users (username, postname, postdate, detail)
+            values('%s','%s','%s','%s');""", (test_user, test_name, test_date, test_detail))
+            data = cursor.fetchall()
+
+            return data
+
+        except Exception as e:
+            return {'error': str(e)}
+
+
+
 
 api.add_resource(CreateUser, '/CreateUser')
+api.add_resource(CreateUser, '/PutEvent')
 
 if __name__ == '__main__':
     app.run(debug=True)
