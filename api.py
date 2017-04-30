@@ -38,7 +38,7 @@ class CreateUser(Resource):
             if data is None:
                 return "Username wrong"
             else:
-                return "user found"
+                return data['postname']
 
         except Exception as e:
             return {'error': str(e)}
