@@ -48,20 +48,20 @@ class CreateUser(Resource):
 
 
 class PutEvent(Resource):
-    def post(self):
+    def get(self):
         try:
-            # Parse the arguments
-            parser = reqparse.RequestParser()
-            parser.add_argument('name', type=str)
-            parser.add_argument('user', type=str)
-            parser.add_argument('description', type=str)
-            parser.add_argument('date', type=str)
-            args = parser.parse_args()
+            # # Parse the arguments
+            # parser = reqparse.RequestParser()
+            # parser.add_argument('name', type=str)
+            # parser.add_argument('user', type=str)
+            # parser.add_argument('description', type=str)
+            # parser.add_argument('date', type=str)
+            # args = parser.parse_args()
 
-            name = str(args['name'].decode('unicode_escape').encode('utf-8'))
-            user = str(args['user'].decode('unicode_escape').encode('utf-8'))
-            description = str(args['description'].decode('unicode_escape').encode('utf-8'))
-            date = str(args['date'].decode('unicode_escape').encode('utf-8'))
+            name = "matt"
+            user = "matttt"
+            description = "blah"
+            date = "10/21/2304"
 
             conn = mysql.connect()
             cursor = conn.cursor()
