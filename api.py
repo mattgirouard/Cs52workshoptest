@@ -2,11 +2,10 @@ from flask import Flask
 from flask_restful import Resource, Api
 from flask_restful import reqparse
 from flask.ext.mysql import MySQL
-from flask.ext.cors import CORS, cross_origin
+from flask.ext.cors import CORS
 
 mysql = MySQL()
 app = Flask(__name__)
-
 CORS(app)
 
 
@@ -52,20 +51,23 @@ class PutEvent(Resource):
     def get(self):
         try:
             # Parse the arguments
-            # parser = reqparse.RequestParser()
-            # parser.add_argument('email', type=str, help='Email address to create user')
-            # parser.add_argument('password', type=str, help='Password to create user')
-            # args = parser.parse_args()
-            test_user = "ogren"
-            test_name = "Test Post"
-            test_date = "10/21/2017"
-            test_detail = "details"
+            parser = reqparse.RequestParser()
+            parser.add_argument('name', type=str)
+            parser.add_argument('user', type=str)
+            parser.add_argument('description', type=str)
+            parser.add_argument('date', type=str)
+            args = parser.parse_args()
+
+            name = args['name']
+            user = args['user']
+            description = args['description']
+            date = args['date']
 
             conn = mysql.connect()
             cursor = conn.cursor()
 
             cursor.execute("""INSERT INTO users (username, postname, postdate, detail)
-            VALUES (%s, %s, %s, %s)""", (test_user, test_name, test_date, test_detail))
+            VALUES (%s, %s, %s, %s)""", (user, name, date, description))
             conn.commit()
             data = cursor.fetchall()
 
