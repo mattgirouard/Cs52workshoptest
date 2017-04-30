@@ -62,6 +62,7 @@ class PutEvent(Resource):
 
             cursor.execute("""INSERT INTO users (username, postname, postdate, detail)
             VALUES (%s, %s, %s, %s)""", (test_user, test_name, test_date, test_detail))
+            conn.commit()
             data = cursor.fetchall()
 
             return data
