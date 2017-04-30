@@ -108,7 +108,7 @@ class AllEvents(Resource):
             conn = mysql.connect()
             cursor = conn.cursor()
 
-            cursor.execute("""SELECT * from users""")
+            cursor.execute("""SELECT * FROM users""")
             data = cursor.fetchall()
 
             return data
