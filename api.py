@@ -58,10 +58,10 @@ class PutEvent(Resource):
             parser.add_argument('date', type=str)
             args = parser.parse_args()
 
-            name = str(args['name'].decode('unicode_escape').encode('ascii', 'utf-8'))
-            user = str(args['user'].decode('unicode_escape').encode('ascii', 'utf-8'))
-            description = str(args['description'].decode('unicode_escape').encode('ascii', 'utf-8'))
-            date = str(args['date'].decode('unicode_escape').encode('ascii', 'utf-8'))
+            name = str(args['name'].decode('unicode_escape').encode('utf-8'))
+            user = str(args['user'].decode('unicode_escape').encode('utf-8'))
+            description = str(args['description'].decode('unicode_escape').encode('utf-8'))
+            date = str(args['date'].decode('unicode_escape').encode('utf-8'))
 
             conn = mysql.connect()
             cursor = conn.cursor()
