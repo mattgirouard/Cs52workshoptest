@@ -17,11 +17,6 @@ mysql.init_app(app)
 
 api = Api(app)
 
-@app.route("/")
-def index():
-    #do whatevr here...
-    return "Hello Heruko"
-
 class CreateUser(Resource):
     def get(self):
         try:
@@ -30,7 +25,6 @@ class CreateUser(Resource):
             # parser.add_argument('email', type=str, help='Email address to create user')
             # parser.add_argument('password', type=str, help='Password to create user')
             # args = parser.parse_args()
-            return {'StatusCode':'200','Message': 'User creation success'}
 
             _userEmail = 'test'
             _userPassword = 'testPass'
