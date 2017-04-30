@@ -38,7 +38,7 @@ class CreateUser(Resource):
             if data is None:
                 return "Username wrong"
             else:
-                return data[1] + data[2]
+                return data
 
         except Exception as e:
             return {'error': str(e)}
