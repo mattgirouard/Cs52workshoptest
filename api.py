@@ -17,6 +17,11 @@ mysql.init_app(app)
 
 api = Api(app)
 
+@app.route("/")
+def index():
+    #do whatevr here...
+    return "Hello Heruko"
+
 class CreateUser(Resource):
     def get(self):
         try:
