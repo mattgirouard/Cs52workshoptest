@@ -48,7 +48,7 @@ class CreateUser(Resource):
 
 
 class PutEvent(Resource):
-    def get(self):
+    def post(self):
         try:
             # Parse the arguments
             parser = reqparse.RequestParser()
