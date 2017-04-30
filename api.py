@@ -71,10 +71,36 @@ class PutEvent(Resource):
             return {'error': str(e)}
 
 
+class EventsForUser(Resource):
+    def get(self):
+        try:
+            # Parse the arguments
+            # parser = reqparse.RequestParser()
+            # parser.add_argument('email', type=str, help='Email address to create user')
+            # parser.add_argument('password', type=str, help='Password to create user')
+            # args = parser.parse_args()
+            test_user = "mgirouard"
+
+            conn = mysql.connect()
+            cursor = conn.cursor()
+
+            cursor.execute("""SELECT * from users where username=%s""", (test_user,))
+            data = cursor.fetchall()
+
+            if data is None:
+                return "Username wrong"
+            else:
+                return data
+
+        except Exception as e:
+            return {'error': str(e)}
+
+
 
 
 api.add_resource(CreateUser, '/CreateUser')
 api.add_resource(PutEvent, '/PutEvent')
+api.add_resource(EventsForUser, '/EventsForUser')
 
 if __name__ == '__main__':
     app.run(debug=True)
