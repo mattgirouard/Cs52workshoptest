@@ -61,7 +61,7 @@ class PutEvent(Resource):
             cursor = conn.cursor()
 
             cursor.execute("""insert into users (username, postname, postdate, detail)
-            values('%s','%s','%s','%s');""", (test_user, test_name, test_date, test_detail))
+            values (%s, %s, %s, %s)""", (test_user, test_name, test_date, test_detail))
             data = cursor.fetchall()
 
             return data
