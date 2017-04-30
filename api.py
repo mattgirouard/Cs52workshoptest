@@ -31,14 +31,14 @@ class CreateUser(Resource):
 
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.callproc('spCreateUser',(_userEmail,_userPassword))
-            data = cursor.fetchall()
 
-            if len(data) is 0:
-                conn.commit()
-                return {'StatusCode':'200','Message': 'User creation success'}
+            cursor.execute("SELECT * from users where username='Matt Girouard'")
+            data = cursor.fetchone()
+
+            if data is None:
+                return "Username wrong"
             else:
-                return {'StatusCode':'1000','Message': str(data[0])}
+                return "user found"
 
         except Exception as e:
             return {'error': str(e)}
