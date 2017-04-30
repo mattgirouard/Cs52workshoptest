@@ -52,7 +52,7 @@ class PutEvent(Resource):
             # parser.add_argument('email', type=str, help='Email address to create user')
             # parser.add_argument('password', type=str, help='Password to create user')
             # args = parser.parse_args()
-            test_user = "mgirouard"
+            test_user = "ogren"
             test_name = "Test Post"
             test_date = "10/21/2017"
             test_detail = "details"
@@ -65,7 +65,7 @@ class PutEvent(Resource):
             conn.commit()
             data = cursor.fetchall()
 
-            return data
+            return {'StatusCode':'200','Message': 'User creation success'}
 
         except Exception as e:
             return {'error': str(e)}
