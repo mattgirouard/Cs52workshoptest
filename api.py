@@ -102,11 +102,27 @@ class EventsForUser(Resource):
             return {'error': str(e)}
 
 
+class AllEvents(Resource):
+    def get(self):
+        try:
+            conn = mysql.connect()
+            cursor = conn.cursor()
+
+            cursor.execute("""SELECT * from users""", (test_user,))
+            data = cursor.fetchall()
+
+            return data
+
+        except Exception as e:
+            return {'error': str(e)}
+
+
 
 
 api.add_resource(CreateUser, '/CreateUser')
 api.add_resource(PutEvent, '/PutEvent')
 api.add_resource(EventsForUser, '/EventsForUser')
+api.add_resource(AllEvents, '/AllEvents')
 
 if __name__ == '__main__':
     app.run(debug=True)
