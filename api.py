@@ -60,8 +60,8 @@ class PutEvent(Resource):
             conn = mysql.connect()
             cursor = conn.cursor()
 
-            cursor.execute("""insert into users (username, postname, postdate, detail)
-            values (%s, %s, %s, %s)""", (test_user, test_name, test_date, test_detail))
+            cursor.execute("""INSERT INTO users (username, postname, postdate, detail)
+            VALUES (%s, %s, %s, %s)""", (test_user, test_name, test_date, test_detail))
             data = cursor.fetchall()
 
             return data
