@@ -144,9 +144,7 @@ class DeleteEvent(Resource):
             conn = mysql.connect()
             cursor = conn.cursor()
 
-            query = """DELETE FROM users WHERE username="%s" and postname="%s" and postdate="%s" and detail="%s" """ % (user, name, description, date)
-            print(query)
-            cursor.execute(query)
+            cursor.execute("""DELETE FROM users WHERE username="%s" and postname="%s" and postdate="%s" and detail="%s" """, (user, name, description, date))
             conn.commit()
 
             return {'StatusCode':'200','Message': 'Delete success'}
