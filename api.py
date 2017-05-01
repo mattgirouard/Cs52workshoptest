@@ -125,6 +125,32 @@ class AllEvents(Resource):
         except Exception as e:
             return {'error': str(e)}
 
+class DeleteEvent(Resource):
+    def post(self):
+        try:
+            # # Parse the arguments
+            parser = reqparse.RequestParser()
+            parser.add_argument('name', type=str)
+            parser.add_argument('user', type=str)
+            parser.add_argument('description', type=str)
+            parser.add_argument('date', type=str)
+            args = parser.parse_args()
+
+            name = args['name']
+            user = args['user']
+            description = args['description']
+            date = args['date']
+
+            conn = mysql.connect()
+            cursor = conn.cursor()
+
+            cursor.execute("""DELETE FROM users WHERE username=%s and postname=%s and postdate=%s and detail=%s""", (user, name, date, description))
+            conn.commit()
+
+            return {'StatusCode':'200','Message': 'Delete success'}
+
+        except Exception as e:
+            return {'error': str(e)}
 
 
 
