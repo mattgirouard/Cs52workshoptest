@@ -113,9 +113,11 @@ class AllEvents(Resource):
             query = """SELECT * FROM users"""
             cursor.execute(query)
             data = cursor.fetchall()
+            ret_data = "{"
+            for row in data:
+                ret_data += """{user: %s, name: %s, description: %s, detail: %s}""" % (row[1], row[0], row[2], row[3])
 
-            data = json.dumps(data)
-            ret_data = data.replace('\\', '')
+            ret_data += "}"
 
             return ret_data
 
