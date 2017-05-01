@@ -114,7 +114,8 @@ class AllEvents(Resource):
             cursor.execute(query)
             data = cursor.fetchall()
 
-            ret_data = json.dumps(data).replace('\\', ' ')
+            data = json.dumps(data)
+            ret_data = data.replace('\\', '')
 
             return ret_data
 
