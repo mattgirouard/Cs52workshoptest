@@ -115,7 +115,7 @@ class AllEvents(Resource):
             data = cursor.fetchall()
             ret_data = "["
             for row in data:
-                ret_data += """{user: '%s', name: '%s', description: '%s', date: '%s'}, """ % (row[0], row[1], row[2], row[3])
+                ret_data += """{'user': '%s', 'name': '%s', 'description': '%s', 'date': '%s'}, """ % (row[0], row[1], row[2], row[3])
 
             ret_data += "]"
 
