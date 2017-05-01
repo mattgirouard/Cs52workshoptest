@@ -49,20 +49,20 @@ class CreateUser(Resource):
 
 
 class PutEvent(Resource):
-    def get(self):
+    def post(self):
         try:
             # # Parse the arguments
-            # parser = reqparse.RequestParser()
-            # parser.add_argument('name', type=str)
-            # parser.add_argument('user', type=str)
-            # parser.add_argument('description', type=str)
-            # parser.add_argument('date', type=str)
-            # args = parser.parse_args()
+            parser = reqparse.RequestParser()
+            parser.add_argument('name', type=str)
+            parser.add_argument('user', type=str)
+            parser.add_argument('description', type=str)
+            parser.add_argument('date', type=str)
+            args = parser.parse_args()
 
-            name = "matt"
-            user = "mattt"
-            description = "blah"
-            date = "10/21/2304"
+            name = args['name']
+            user = args['user']
+            description = args['description']
+            date = args['date']
 
             conn = mysql.connect()
             cursor = conn.cursor()
@@ -114,7 +114,7 @@ class AllEvents(Resource):
             cursor.execute(query)
             data = cursor.fetchall()
 
-            return json.dumps(data, ensure_ascii=False)
+            return json.dumps(data).replace('\"', '"')
 
         except Exception as e:
             return {'error': str(e)}
