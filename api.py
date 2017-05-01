@@ -91,6 +91,7 @@ class EventsForUser(Resource):
             cursor = conn.cursor()
 
             cursor.execute("""SELECT * from users where username=%s""", (test_user,))
+            conn.commit()
             data = cursor.fetchall()
 
             if data is None:
