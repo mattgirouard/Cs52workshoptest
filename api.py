@@ -114,7 +114,9 @@ class AllEvents(Resource):
             cursor.execute(query)
             data = cursor.fetchall()
 
-            return json.dumps(data).replace('\\', '')
+            ret_data = json.dumps(data).decode('string_escape')
+
+            return ret_data
 
         except Exception as e:
             return {'error': str(e)}
