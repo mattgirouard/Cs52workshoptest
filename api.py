@@ -59,7 +59,7 @@ class PutEvent(Resource):
             # args = parser.parse_args()
 
             name = "matt"
-            user = "matttt"
+            user = "mattt"
             description = "blah"
             date = "10/21/2304"
 
