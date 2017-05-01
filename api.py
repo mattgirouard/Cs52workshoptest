@@ -3,6 +3,7 @@ from flask_restful import Resource, Api
 from flask_restful import reqparse
 from flask.ext.mysql import MySQL
 from flask.ext.cors import CORS
+import json
 
 mysql = MySQL()
 app = Flask(__name__)
@@ -97,7 +98,7 @@ class EventsForUser(Resource):
             if data is None:
                 return "Username wrong"
             else:
-                return data
+                return json.dumps(data)
 
         except Exception as e:
             return {'error': str(e)}
