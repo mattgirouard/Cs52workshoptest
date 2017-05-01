@@ -98,7 +98,7 @@ class EventsForUser(Resource):
             if data is None:
                 return "Username wrong"
             else:
-                return json.dumps(data)
+                return json.dumps(data, ensure_ascii=True)
 
         except Exception as e:
             return {'error': str(e)}
@@ -114,7 +114,7 @@ class AllEvents(Resource):
             cursor.execute(query)
             data = cursor.fetchall()
 
-            return data
+            return json.dumps(data, ensure_ascii=False)
 
         except Exception as e:
             return {'error': str(e)}
