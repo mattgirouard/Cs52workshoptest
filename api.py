@@ -140,7 +140,6 @@ class DeleteEvent(Resource):
             user = args['user']
             description = args['description']
             date = args['date']
-            print(description)
 
             conn = mysql.connect()
             cursor = conn.cursor()
