@@ -145,7 +145,7 @@ class DeleteEvent(Resource):
             cursor = conn.cursor()
 
             query = """DELETE FROM users WHERE username="%s" and postname="%s" and postdate="%s" and detail="%s" """ % (user, name, date, description)
-            
+            print(query)
             cursor.execute(query)
             conn.commit()
 
