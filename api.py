@@ -160,6 +160,7 @@ api.add_resource(CreateUser, '/CreateUser')
 api.add_resource(PutEvent, '/PutEvent')
 api.add_resource(EventsForUser, '/EventsForUser')
 api.add_resource(AllEvents, '/AllEvents')
+api.add_resource(DeleteEvent, '/DeleteEvent')
 
 if __name__ == '__main__':
     app.run(debug=True)
