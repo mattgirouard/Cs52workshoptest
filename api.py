@@ -42,6 +42,7 @@ class PutEvent(Resource):
             cursor.execute("""INSERT INTO users (username, postname, postdate, detail)
             VALUES (%s, %s, %s, %s)""", (user, name, date, description))
             conn.commit()
+            conn.release()
 
             return {'StatusCode':'200'}
 
@@ -70,6 +71,8 @@ class EventsForUser(Resource):
             ret_data = ret_data[:-2]
             ret_data += "]"
 
+            conn.release()
+
             return ret_data
 
         except Exception as e:
@@ -91,6 +94,8 @@ class AllEvents(Resource):
 
             ret_data = ret_data[:-2]
             ret_data += "]"
+
+            conn.release()
 
             return ret_data
 
@@ -119,6 +124,8 @@ class DeleteEvent(Resource):
             query = """DELETE FROM users WHERE username="%s" and postname="%s" and postdate="%s" and detail="%s" """ % (user, name, description, date)
             cursor.execute(query)
             conn.commit()
+
+            conn.release()
 
             return {'StatusCode':'200','Message': 'Delete success'}
 
