@@ -42,7 +42,7 @@ class PutEvent(Resource):
             cursor.execute("""INSERT INTO users (username, postname, postdate, detail)
             VALUES (%s, %s, %s, %s)""", (user, name, date, description))
             conn.commit()
-            conn.release()
+            conn.close()
 
             return {'StatusCode':'200'}
 
@@ -71,7 +71,7 @@ class EventsForUser(Resource):
             ret_data = ret_data[:-2]
             ret_data += "]"
 
-            conn.release()
+            conn.close()
 
             return ret_data
 
@@ -95,7 +95,7 @@ class AllEvents(Resource):
             ret_data = ret_data[:-2]
             ret_data += "]"
 
-            conn.release()
+            conn.close()
 
             return ret_data
 
@@ -125,7 +125,7 @@ class DeleteEvent(Resource):
             cursor.execute(query)
             conn.commit()
 
-            conn.release()
+            conn.close()
 
             return {'StatusCode':'200','Message': 'Delete success'}
 
