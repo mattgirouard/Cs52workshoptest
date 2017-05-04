@@ -89,7 +89,11 @@ class AllEvents(Resource):
             cursor.execute(query)
             data = cursor.fetchall()
 
-            print(json.dumps(data))
+
+            ret_data_2 = []
+            for row in data:
+                ret_data_2.append({'user': row[0], 'name': row[1], 'description': row[2], 'date': row[3]})
+            print(json.dumps(ret_data_2))
 
             ret_data = "["
             for row in data:
