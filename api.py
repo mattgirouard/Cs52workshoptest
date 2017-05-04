@@ -64,12 +64,13 @@ class EventsForUser(Resource):
             cursor.execute("""SELECT * from users where username=%s""", (user,))
             conn.commit()
             data = cursor.fetchall()
-            ret_data = "["
+            
+            data_json = []
             for row in data:
-                ret_data += """{'user': '%s', 'name': '%s', 'description': '%s', 'date': '%s'}, """ % (row[0], row[1], row[2], row[3])
+                data_json.append({'user': row[0], 'name': row[1], 'description': row[2], 'date': row[3]})
 
-            ret_data = ret_data[:-2]
-            ret_data += "]"
+            conn.close()
+            ret_data = json.dumps(data_json)
 
             conn.close()
 
@@ -89,21 +90,12 @@ class AllEvents(Resource):
             cursor.execute(query)
             data = cursor.fetchall()
 
-
-            ret_data_2 = []
+            data_json = []
             for row in data:
-                ret_data_2.append({'user': row[0], 'name': row[1], 'description': row[2], 'date': row[3]})
-            print(json.dumps(ret_data_2))
-
-            ret_data = "["
-            for row in data:
-                ret_data += """{'user': '%s', 'name': '%s', 'description': '%s', 'date': '%s'}, """ % (row[0], row[1], row[2], row[3])
-
-            ret_data = ret_data[:-2]
-            ret_data += "]"
+                data_json.append({'user': row[0], 'name': row[1], 'description': row[2], 'date': row[3]})
 
             conn.close()
-            ret_data = json.dumps(ret_data_2)
+            ret_data = json.dumps(data_json)
 
             return ret_data
 
