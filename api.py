@@ -88,6 +88,9 @@ class AllEvents(Resource):
             query = """SELECT * FROM users"""
             cursor.execute(query)
             data = cursor.fetchall()
+
+            print(json.dumps(data))
+
             ret_data = "["
             for row in data:
                 ret_data += """{'user': '%s', 'name': '%s', 'description': '%s', 'date': '%s'}, """ % (row[0], row[1], row[2], row[3])
