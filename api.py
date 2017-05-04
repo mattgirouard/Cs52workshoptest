@@ -104,7 +104,7 @@ class AllEvents(Resource):
 
             conn.close()
 
-            return ret_data
+            return json.dumps(ret_data_2)
 
         except Exception as e:
             return {'error': str(e)}
