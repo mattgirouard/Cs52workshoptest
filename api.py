@@ -125,7 +125,8 @@ class DeleteEvent(Resource):
             print("reg")
             print(date)
             print("json")
-            print(json.loads(date))
+            x = json.loads(date)
+            print(x)
             cursor.execute(query)
             conn.commit()
 
