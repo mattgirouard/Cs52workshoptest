@@ -92,7 +92,7 @@ class AllEvents(Resource):
 
             data_json = []
             for row in data:
-                data_json.append({'user': row[0], 'name': row[1], 'description': row[2], 'date': row[3]})
+                data_json.append({'user': row[0], 'name': row[1], 'description': row[3], 'date': row[2]})
 
             conn.close()
             ret_data = json.dumps(data_json)
@@ -121,7 +121,7 @@ class DeleteEvent(Resource):
             conn = mysql.connect()
             cursor = conn.cursor()
 
-            query = """DELETE FROM users WHERE username=%s and postname=%s and postdate=%s and detail=%s """ % (json.dumps(user), json.dumps(name), json.dumps(description), json.dumps(date))
+            query = """DELETE FROM users WHERE username=%s and postname=%s and postdate=%s and detail=%s """ % (json.dumps(user), json.dumps(name), json.dumps(date), json.dumps(description))
 
             cursor.execute(query)
             conn.commit()
