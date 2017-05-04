@@ -64,7 +64,7 @@ class EventsForUser(Resource):
             cursor.execute("""SELECT * from users where username=%s""", (user,))
             conn.commit()
             data = cursor.fetchall()
-            
+
             data_json = []
             for row in data:
                 data_json.append({'user': row[0], 'name': row[1], 'description': row[2], 'date': row[3]})
@@ -122,6 +122,10 @@ class DeleteEvent(Resource):
             cursor = conn.cursor()
 
             query = """DELETE FROM users WHERE username="%s" and postname="%s" and postdate="%s" and detail="%s" """ % (user, name, description, date)
+            print("reg")
+            print(description)
+            print("json")
+            print(json.loads(description))
             cursor.execute(query)
             conn.commit()
 
