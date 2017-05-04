@@ -121,7 +121,7 @@ class DeleteEvent(Resource):
             conn = mysql.connect()
             cursor = conn.cursor()
 
-            query = """DELETE FROM users WHERE username="%s" and postname="%s" and postdate="%s" and detail="%s" """ % (user, name, description, json.dumps(date))
+            query = """DELETE FROM users WHERE username="%s" and postname="%s" and postdate="%s" and detail=%s """ % (user, name, description, json.dumps(date))
             print("reg")
             print(date)
             print("json")
